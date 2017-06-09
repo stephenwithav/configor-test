@@ -14,11 +14,11 @@ type Config struct {
 
 func main() {
 	cfg := &Config{}
-	flag.StringVar(&cfg.Port, "port", "11333", "port to use")
-	flag.BoolVar(&cfg.Debug, "debug", false, "run in debug mode")
-	flag.Parse()
-
 	configor.New(&configor.Config{ENVPrefix: "TEST"}).Load(cfg, "config.yaml")
+
+	flag.StringVar(&cfg.Port, "port", cfg.Port, "port to use")
+	flag.BoolVar(&cfg.Debug, "debug", cfg.Debug, "run in debug mode")
+	flag.Parse()
 
 	fmt.Printf("%#v", cfg)
 }
